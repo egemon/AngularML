@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+<head>
+  <meta charset="UTF-8">
+  <title></title>
+</head>
+<body>
+
+<div ng-controller='ListCtr as ListCtr'>
+    <ul>
+        <li ng-controller="firstTDCtr as firstTDCtr">
+            {{ListMdl.TDList[0]}}
+            {{firstTDCtr.firstTDCtrVar}}
+            {{this}}
+            <button ng-click="showTDDetails()">Show details</button>
+        </li>
+        <li ng-controller="secondTDCtr as secondTDCtr">
+            {{ListMdl.TDList[1]}}
+            {{secondTDCtr.secondTDCtrVar}}
+            {{this}}
+            <button ng-click="showTDDetails()">Show details</button>
+        </li>
+        {{ListMdl.TDList}}
+    </ul>
+</div>
+<div ng-controller='AddTDCtr'>
+    <input type='text' ng-model='newTD' placeholder="Place for new TODO :)">
+    <button ng-click="addTD()">Add TODO</button>
+</div>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.5/angular.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+</body>
