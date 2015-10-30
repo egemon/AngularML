@@ -1,50 +1,62 @@
-var app = angular.module('app', []);
-app.factory('ListMdl', function(){
-    return {
-        TDList: ['Clean board']
-    };
-});
+(function () {
+    var app = angular.module('todoapp', []);
+    // console.log = function (string) {
+    //     $('body').append(string);
+    // };
 
-app.controller('AddTDCtr', function ($scope, ListMdl) {
-    $scope.addTD = function (TD) {
-        if (!$scope.newTD) {return; }
-        console.log('TD added');
-        ListMdl.TDList.push($scope.newTD);
-        $('li').eq(0).clone()
-        .find('span').text($scope.newTD)
-        .end().appendTo('#TD_ul');
-    };
-});
-
-
-app.controller('ListCtr', function ($scope, ListMdl) {
-    $scope.ListMdl = ListMdl;
-    $scope.showTDDetails = function () {
-        console.log('[?TDCtr] showTDDetails()', ListMdl.TDList[0]);
-    };
-});
-app.controller('TD_Ctr', function($scope) {
-    $scope.money = 25;
-    $scope.showTDDetails = function () {
-        console.log('[firstTDCtr] showTDDetails()', $scope.ListMdl.TDList[0]);
-    };
-});
-
-app.directive('td', function(){
-    return {
-        template: "<span> {{ListMdl.TDList[0]}}</span>" +
-            "<span class='money'>{{money | moneyFilter}}</span>" +
-            "<button ng-click='showTDDetails()' show >Show details</button>",
-        link: function($scope, iElm, iAttrs, controller) {
-            iElm.on('click', function(e) {
-                console.log('[firstTDCtr] show some detail');
-            });
+    app.controller('ListCtr', function($scope){
+        this.formatTime = function () {
+            arguments = Array.prototype.slice.call(arguments)
+            return (new Date(arguments)).getTime()
         }
-    };
-});
 
-app.filter('moneyFilter', function () {
-    return function (str) {
-        return str + '$';
-    };
-});
+
+        console.log('[ListCtr] Starts()');
+        this.todoList = [
+        {
+            task: 'Create friends meeting in VK',
+            timeline: this.formatTime(2015, 9, 31),
+            description: 'go to VK and create polylog',
+            isDone: false,
+            doneable: true,
+            img: {
+                small:'friends.jpg'
+            }
+        },{
+            task: 'Think about Helloween',
+            timeline: this.formatTime(2015, 9, 30),
+            description: 'Say to Olya',
+            isDone: false,
+            doneable: false,
+            img: {
+                small:'helloween.jpg'
+            }
+        }];
+    });
+
+    app.controller('PanelController', function(){
+        this.tab = 1;
+        this.selectTab = function (tab) {
+            this.tab = tab;
+        }
+        this.isSelected = function  (tab) {
+            return this.tab == tab;
+        }
+    })
+
+    app.filter('task',function(){
+        return function (str) {
+            console.log('args = ', arguments);
+            return 'Summary:' + str;
+        }
+    });
+    app.filter('desc',function(){
+        return function (str) {
+            console.log('args = ', arguments);
+            return 'You should: ' + str;
+        }
+    });
+
+
+
+})();
