@@ -6,9 +6,9 @@
 
     app.controller('ListCtr', function($scope){
         this.formatTime = function () {
-            arguments = Array.prototype.slice.call(arguments)
-            return (new Date(arguments)).getTime()
-        }
+            var args = Array.prototype.slice.call(arguments);
+            return (new Date(args)).getTime();
+        };
 
 
         console.log('[ListCtr] Starts()');
@@ -38,23 +38,23 @@
         this.tab = 1;
         this.selectTab = function (tab) {
             this.tab = tab;
-        }
+        };
         this.isSelected = function  (tab) {
             return this.tab == tab;
-        }
-    })
+        };
+    });
 
     app.filter('task',function(){
         return function (str) {
             console.log('args = ', arguments);
             return 'Summary:' + str;
-        }
+        };
     });
     app.filter('desc',function(){
         return function (str) {
             console.log('args = ', arguments);
             return 'You should: ' + str;
-        }
+        };
     });
 
 

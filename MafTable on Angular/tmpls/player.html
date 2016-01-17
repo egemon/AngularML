@@ -1,0 +1,18 @@
+<div ng-controller="PlayerCtrl as player">
+    <input type="text" ng-model="player.nick">
+    <select name="" id="" ng-model="player.role">
+        <option>Мирный</option>
+        <option>Мафия</option>
+        <option>Дон</option>
+        <option>Шериф</option>
+    </select>
+    <span class="falls" >
+        <button type="" class="decrFall" ng-click="player.decrFall()">-</button>
+        <span>{{player.falls}}</span>
+        <button type="" class="incrFall" ng-click="player.incrFall()">+</button>
+    </span>
+
+    <input type="checkbox">Убит
+    <input type="checkbox">Проверен шерифом
+    <input type="checkbox">Проверен доном
+</div>
