@@ -12,7 +12,6 @@ var Player = angular.module('player', [])
         this.falls++;
     };
     $scope.$parent.Protocol.players[$scope.$index] = this;
-    console.log($scope);
 })
 .directive('player', function () {
     return {
