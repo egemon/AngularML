@@ -1,23 +1,22 @@
 var Timer = angular.module('timer', [])
-.controller('timerCtrl', function ($scope) {
-    var intervalId = null;
+.controller('timerCtrl', function ($scope, $interval) {
+    var inter = null;
 
     this.state = 'Start';
     this.time = 0;
 
+    function increaseTime() {
+        this.time++;
+    }
 
     this.toggleState = function () {
         switch(this.state) {
             case 'Start':
-                intervalId = setInterval(function() {
-                    $scope.$apply(function(){
-                        this.time++;
-                    }.bind(this));
-                }.bind(this), 1000);
+                inter = $interval(increaseTime.bind(this), 1000);
                 this.state = 'Pause';
             break;
             case 'Pause':
-                clearInterval(intervalId);
+                $interval.cancel(inter);
                 this.state = 'Start';
             break;
         }
@@ -25,7 +24,7 @@ var Timer = angular.module('timer', [])
     this.reset = function () {
         this.time = 0;
         this.state = 'Start';
-        clearInterval(intervalId);
+        $interval.cancel(inter);
     };
 
 })
