@@ -1,6 +1,5 @@
-var Player = angular.module('player', ['club', 'game'])
-.controller('PlayerCtrl', ['$scope', 'club', 'game', function ($scope, club, game) {
-    $scope.ROLES = club.ROLES;
+var Player = angular.module('player', ['game'])
+.controller('PlayerCtrl', ['$scope', 'game', function ($scope, game) {
 
     this.number = $scope.$index + 1;
     this.nick = '';
