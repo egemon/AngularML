@@ -1,17 +1,18 @@
 var Timer = angular.module('timer', [])
 .controller('timerCtrl', function ($scope) {
     var intervalId = null;
-    
+
     this.state = 'Start';
     this.time = 0;
-    
+
 
     this.toggleState = function () {
         switch(this.state) {
             case 'Start':
                 intervalId = setInterval(function() {
-                    this.time++;
-                    $scope.$digest()
+                    $scope.$apply(function(){
+                        this.time++;
+                    }.bind(this));
                 }.bind(this), 1000);
                 this.state = 'Pause';
             break;
@@ -19,7 +20,7 @@ var Timer = angular.module('timer', [])
                 clearInterval(intervalId);
                 this.state = 'Start';
             break;
-        }  
+        }
     };
     this.reset = function () {
         this.time = 0;
