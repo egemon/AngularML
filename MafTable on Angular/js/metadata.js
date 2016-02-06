@@ -1,7 +1,7 @@
 const WIN = ['Мирные', "Мафия"];
 const TABLES = ['BakerStreet', 'FleetStreet'];
 var Header = angular.module('header', [])
-.controller('HeaderCtrl', function ($scope) {
+.controller('MetadataCtrl', function ($scope) {
     $scope.TABLES = TABLES;
     $scope.WIN = WIN;
 
@@ -12,13 +12,13 @@ var Header = angular.module('header', [])
     this.ref = 'Merlin';
     this.gameNumber = 1;
 
-    console.log('HeaderCtrl', $scope);
+    console.log('MetadataCtrl', $scope);
     $scope.Protocol.metadata = this;
 })
-.directive('protocolHeader', function () {
+.directive('metadata', function () {
     return {
         restrict: 'E',
-        templateUrl: 'tmpls/protocol-header.html',
-        controller: 'HeaderCtrl as game'
+        templateUrl: 'tmpls/metadata.html',
+        controller: 'MetadataCtrl as metadata'
     };
 });
