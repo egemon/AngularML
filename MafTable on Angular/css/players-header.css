@@ -1,0 +1,20 @@
+players-header {
+    text-align: center;
+}
+
+players-header span {
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.header-checboxes {
+    width: 15px;
+}
+
+.input{
+    padding: 4px 6px;
+    width: 206px;
+}
+.falls {
+    width: 60px;
+}

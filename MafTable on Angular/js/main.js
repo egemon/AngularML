@@ -1,7 +1,7 @@
-var Protocol = angular.module('ProtocolApp', ['player', 'header', 'timer'])
+var Protocol = angular.module('ProtocolApp', ['player', 'header', 'timer', 'players-header'])
 .controller('ProtocolCtrl', ['$http',function ($http, $scope) {
 
-    this.players = new Array(10);
+    this.playerLines = new Array(10);
 
     this.saveGame = function () {
         console.log('Game saved');
