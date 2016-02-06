@@ -1,5 +1,5 @@
-var Player = angular.module('player', ['club'])
-.controller('PlayerCtrl', ['club', '$scope', function (club, $scope) {
+var Player = angular.module('player', ['club', 'game'])
+.controller('PlayerCtrl', ['$scope', 'club', 'game', function ($scope, club, game) {
     $scope.ROLES = club.ROLES;
 
     this.number = $scope.$index + 1;
@@ -15,7 +15,7 @@ var Player = angular.module('player', ['club'])
     this.incrFall = function () {
         this.falls++;
     };
-    $scope.$parent.Protocol.playerLines[$scope.$index] = this;
+    game.playerLines[$scope.$index] = this;
 }])
 .directive('player', function ($templateCache) {
     return {

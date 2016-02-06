@@ -1,12 +1,10 @@
-var Protocol = angular.module('ProtocolApp', ['player', 'metadata', 'timer', 'players-header', 'sync'])
-.controller('ProtocolCtrl', ['$scope', '$http', 'sync', function ($scope, $http, sync) {
-    var game = this;
-    this.playerLines = new Array(10);
+var Protocol = angular.module('ProtocolApp', ['player', 'metadata', 'timer', 'players-header', 'sync', 'game'])
+.controller('ProtocolCtrl', ['$scope', '$http', '$log', 'sync', 'game', function ($scope, $http, $log, sync, game) {
+    $log.log('ProtocolCtrl init');
+    $scope.game = game;
 
-    function saveGame() {
-        console.log('PROTOCOL saveGame()', game);
-        sync.push(game);
+    this.saveGame = function() {
+        $log.log('PROTOCOL saveGame()', this.game);
+        sync.push($scope.game);
     };
-
-    $scope.saveGame = saveGame;
 }]);

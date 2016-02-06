@@ -1,5 +1,5 @@
-var Metadata = angular.module('metadata', ['club'])
-.controller('MetadataCtrl', ['club', '$scope', function (club, $scope) {
+var Metadata = angular.module('metadata', ['club', 'game'])
+.controller('MetadataCtrl', ['$scope', 'club', 'game', function ($scope, club, game) {
     $scope.TABLES = club.TABLES;
     $scope.WIN = club.WIN;
 
@@ -11,7 +11,7 @@ var Metadata = angular.module('metadata', ['club'])
     this.gameNumber = 1;
 
     console.log('MetadataCtrl', $scope);
-    $scope.Protocol.metadata = this;
+    game.metadata = this;
 }])
 .directive('metadata', function () {
     return {
