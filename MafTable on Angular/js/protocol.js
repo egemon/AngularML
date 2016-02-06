@@ -1,4 +1,4 @@
-var Protocol = angular.module('ProtocolApp', ['player', 'header', 'timer', 'players-header'])
+var Protocol = angular.module('ProtocolApp', ['player', 'metadata', 'timer', 'players-header'])
 .controller('ProtocolCtrl', ['$http',function ($http, $scope) {
 
     this.playerLines = new Array(10);

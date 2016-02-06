@@ -1,12 +1,10 @@
-const WIN = ['Мирные', "Мафия"];
-const TABLES = ['BakerStreet', 'FleetStreet'];
-var Header = angular.module('header', [])
-.controller('MetadataCtrl', function ($scope) {
-    $scope.TABLES = TABLES;
-    $scope.WIN = WIN;
+var Metadata = angular.module('metadata', ['club'])
+.controller('MetadataCtrl', ['club', '$scope', function (club, $scope) {
+    $scope.TABLES = club.TABLES;
+    $scope.WIN = club.WIN;
 
-    this.table = TABLES[0];
-    this.win = WIN[0];
+    this.table = $scope.TABLES[0];
+    this.win = $scope.WIN[0];
 
     this.date = new Date();
     this.ref = 'Merlin';
@@ -14,7 +12,7 @@ var Header = angular.module('header', [])
 
     console.log('MetadataCtrl', $scope);
     $scope.Protocol.metadata = this;
-})
+}])
 .directive('metadata', function () {
     return {
         restrict: 'E',
