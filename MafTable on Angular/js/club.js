@@ -1,12 +1,13 @@
 angular.module('club', [])
-.factory('club', function(){
-    const ROLES = ['Мирный', "Мафия", "Дон", "Шериф"];
-    const WIN = ['Мирные', "Мафия"];
-    const TABLES = ['BakerStreet', 'FleetStreet'];
-
+.factory('club', [function(){
+    var ROLES = ['Мирный', "Мафия", "Дон", "Шериф"];
+    var WIN = ['Мирные', "Мафия"];
+    var TABLES = ['BakerStreet', 'FleetStreet'];
+    var BASE_SERVER_URL = 'http://bs-mafiaclub.rhcloud.com/sync';
     return {
         ROLES: ROLES,
         WIN: WIN,
-        TABLES: TABLES
+        TABLES: TABLES,
+        BASE_SERVER_URL: BASE_SERVER_URL
     };
-});
+}]);
