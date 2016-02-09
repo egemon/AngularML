@@ -3,6 +3,7 @@ var Protocol = angular.module('ProtocolApp', ['player', 'metadata', 'timer', 'pl
     $log.log('ProtocolCtrl init');
     $scope.game = game;
     $scope.ROLES = club.ROLES;
+    $scope.MAX_FALLS = club.MAX_FALLS;
 
     this.saveGame = function() {
         $log.log('PROTOCOL saveGame()', this.game);

@@ -1,5 +1,6 @@
 var Player = angular.module('player', ['game'])
 .controller('PlayerCtrl', ['$scope', 'game', function ($scope, game) {
+    this.MAX_FALLS = game.MAX_FALLS;
 
     this.number = $scope.$index + 1;
     this.nick = '';
