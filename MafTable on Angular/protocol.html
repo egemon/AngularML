@@ -24,7 +24,7 @@
     <timer></timer>
     <players-header></players-header>
     <div class="player-container">
-      <player ng-repeat="player in game.playerLines track by $index">
+      <player ng-repeat="player in Protocol.game.playerLines track by $index">
       </player>
     <button class= "btn btn-success" type="submit" ng-click="Protocol.saveGame()">Внести</button>
     </div>

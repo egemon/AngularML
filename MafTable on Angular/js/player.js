@@ -1,9 +1,9 @@
 var Player = angular.module('player', ['game'])
-.controller('PlayerCtrl', function ($scope, game) {
+.controller('PlayerCtrl', function ($scope, game, club) {
 
     this.number = $scope.$index + 1;
     this.nick = '';
-    this.role = $scope.ROLES[0];
+    this.role = club.ROLES[0];
     this.falls = 0;
     this.BP = false;
     this.BR = false;
