@@ -1,5 +1,5 @@
 var Metadata = angular.module('metadata', ['club', 'game'])
-.controller('MetadataCtrl', ['$scope', 'club', 'game', function ($scope, club, game) {
+.controller('MetadataCtrl', function ($scope, club, game) {
     $scope.TABLES = club.TABLES;
     $scope.WIN = club.WIN;
 
@@ -12,7 +12,7 @@ var Metadata = angular.module('metadata', ['club', 'game'])
 
     console.log('MetadataCtrl', $scope);
     game.metadata = this;
-}])
+})
 .directive('metadata', function () {
     return {
         restrict: 'E',

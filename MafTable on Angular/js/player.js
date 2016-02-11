@@ -1,6 +1,5 @@
 var Player = angular.module('player', ['game'])
-.controller('PlayerCtrl', ['$scope', 'game', function ($scope, game) {
-    this.MAX_FALLS = game.MAX_FALLS;
+.controller('PlayerCtrl', function ($scope, game) {
 
     this.number = $scope.$index + 1;
     this.nick = '';
@@ -16,7 +15,7 @@ var Player = angular.module('player', ['game'])
         this.falls++;
     };
     game.playerLines[$scope.$index] = this;
-}])
+})
 .directive('player', function ($templateCache) {
     return {
         restrict: 'E',

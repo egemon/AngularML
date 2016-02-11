@@ -1,11 +1,11 @@
 angular.module('sync', ['club'])
-.factory('sync', ['$http', 'club', function ($http, club) {
+.factory('sync', function ($http, club) {
     function _stringify (object) {
         try {
-            return JSON.stringify(object)
+            return JSON.stringify(object);
         } catch(e) {
-            throw 'Incorrect game couldn"t been stringified!';
             alert('Incorrect game couldn"t been stringified!');
+            throw 'Incorrect game couldn"t been stringified!';
         }
     }
     function _gamesSaved (data) {
@@ -25,4 +25,4 @@ angular.module('sync', ['club'])
     return {
         push: pushToServer
     };
-}]);
+});
