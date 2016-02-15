@@ -1,8 +1,8 @@
 <span class="player-number">{{$index + 1}}</span>
 <input class="best-checkbox" type="checkbox" name="best" value="" ng-model="player.BP">
 <input class="best-checkbox" type="checkbox" name="best" value="" ng-model="player.BR">
-<input class="player-nick" type="text" ng-model="player.nick" required>
-<select class="player-role" name="" id="" ng-model="player.role">
+<input required class="player-nick" type="text" ng-model="player.nick">
+<select required class="player-role" name="" id="" ng-model="player.role">
     <option ng-repeat= "role in Protocol.ROLES">{{role}}</option>
 </select>
 <span class="falls">

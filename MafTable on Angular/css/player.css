@@ -17,3 +17,7 @@ player .player-nick,
 player .player-role {
     margin: 10px 0px;
 }
+
+.player-nick.ng-touched.ng-invalid {
+    border: 1px solid black;
+}

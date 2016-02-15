@@ -5,8 +5,19 @@ var Protocol = angular.module('ProtocolApp', ['player', 'metadata', 'timer', 'pl
     this.ROLES = club.ROLES;
     this.MAX_FALLS = club.MAX_FALLS;
 
-    this.saveGame = function() {
+
+    this.saveGame = function(ProtocolForm) {
+        glo = ProtocolForm;
+        $log.log(ProtocolForm);
+        if (ProtocolForm.$submitted) {
+            console.log(ProtocolForm.$submitted);
+        }
+
         $log.log('PROTOCOL saveGame()', this.game);
-        sync.push($scope.game);
+        // sync.push($scope.game);
+    };
+
+    this.save = function () {
+        console.log(arguments);
     };
 });

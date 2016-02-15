@@ -1,9 +1,9 @@
-<select ng-model="metadata.table" name="" id="">
+<select required ng-model="metadata.table" name="" id="">
     <option ng-repeat="table in metadata.TABLES">{{table}}</option>
 </select>
-<input ng-model="metadata.date" type="date" name="" value="" placeholder="">
-<input ng-model="metadata.ref" type="text" name="" value="" placeholder="">
-<select ng-model="metadata.win" name="" id="">
+<input required ng-model="metadata.date" type="date" name="" value="" placeholder="">
+<input required ng-model="metadata.ref" type="text" name="" value="" placeholder="">
+<select required ng-model="metadata.win" name="" id="">
     <option ng-repeat="win in metadata.WIN">{{win}}</option>
 </select>
-<input ng-model="metadata.gameNumber" type="number" name="" value="" placeholder="" min="0" step="1">
+<input required ng-model="metadata.gameNumber" type="number" name="" value="" placeholder="" min="0" step="1">
