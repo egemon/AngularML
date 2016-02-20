@@ -1,7 +1,10 @@
-var Protocol = angular.module('ProtocolApp', ['player', 'metadata', 'timer', 'players-header', 'sync', 'game', 'club'])
-.controller('ProtocolCtrl', function ($scope, $http, $log, sync, game, club) {
+var Protocol = angular.module('ProtocolApp', ['player', 'metadata', 'timer', 'players-header', 'sync', 'club'])
+.controller('ProtocolCtrl', function ($scope, $http, $log, sync, club) {
     $log.log('ProtocolCtrl init');
-    this.game = game;
+    this.game = {
+        playerLines: new Array(club.PLAYER_NUMBER),
+        metadata: {}
+    };
     this.ROLES = club.ROLES;
     this.MAX_FALLS = club.MAX_FALLS;
     this.TABLES = club.TABLES;
@@ -15,7 +18,7 @@ var Protocol = angular.module('ProtocolApp', ['player', 'metadata', 'timer', 'pl
         }
 
         $log.log('PROTOCOL saveGame()', this.game);
-        // sync.push($scope.game);
+        sync.push(this.game);
     };
 
     this.save = function () {
