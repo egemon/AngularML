@@ -1,6 +1,5 @@
 angular.module('club', [])
 .factory('club', [function(){
-
     return {
         ROLES: ['Мирный', "Мафия", "Дон", "Шериф"],
         WIN: ['Мирные', "Мафия"],

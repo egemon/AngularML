@@ -4,7 +4,8 @@ var Protocol = angular.module('ProtocolApp', ['player', 'metadata', 'timer', 'pl
     this.game = game;
     this.ROLES = club.ROLES;
     this.MAX_FALLS = club.MAX_FALLS;
-
+    this.TABLES = club.TABLES;
+    this.WIN = club.WIN;
 
     this.saveGame = function(ProtocolForm) {
         glo = ProtocolForm;
