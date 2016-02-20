@@ -20,4 +20,11 @@ var Protocol = angular.module('ProtocolApp', ['player', 'metadata', 'timer', 'pl
     this.save = function () {
         console.log(arguments);
     };
+})
+.directive('protocol', function () {
+    return {
+        restrict: "E",
+        templateUrl: 'tmpls/protocol.html',
+        controller: 'ProtocolCtrl as Protocol'
+    };
 });

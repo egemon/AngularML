@@ -1,0 +1,13 @@
+<form novalidate method="get" accept-charset="utf-8" name="ProtocolForm" ng-submit="Protocol.saveGame(ProtocolForm)">
+  <metadata></metadata>
+  <timer></timer>
+  <players-header></players-header>
+  <div class="player-container">
+    <player ng-repeat="player in Protocol.game.playerLines track by $index">
+    </player>
+    <button class= "btn btn-success" type="submit" ng-disabled="ProtocolForm.$invalid">Внести</button>
+    <div ng-show="ProtocolForm.$invalid">
+      Пожалуйста заполните все игровые ники и необходимые поля!
+    </div>
+  </div>
+</form>
