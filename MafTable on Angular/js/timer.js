@@ -6,6 +6,7 @@ var Timer = angular.module('timer', [])
     this.time = 0;
 
     function increaseTime() {
+        //@see https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#style-y032
         this.time++;
     }
 

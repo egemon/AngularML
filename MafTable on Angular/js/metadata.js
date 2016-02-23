@@ -1,3 +1,4 @@
+// TODO @IL you have to use Function.$inject (or annotations, etc) to avoid future problems with minification
 function MetadataCtrl ($scope, club) {
 
     //======= FIELDS =========
@@ -11,7 +12,7 @@ function MetadataCtrl ($scope, club) {
 
 //======== METHODS ==========
 // MetadataCtrl.prototype.method =
-
+// TODO @IL why do you implement metadata as a separate module? seems it's part of protocol
 var Metadata = angular.module('metadata', ['club'])
 .controller('MetadataCtrl', MetadataCtrl)
 .directive('metadata', function () {

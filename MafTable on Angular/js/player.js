@@ -1,6 +1,7 @@
 function PlayerCtrl ($scope, game, club) {
 
     //======= FIELDS =========
+    //TODO @IL try to replace $scope.$index via "controllerAs" style
     this.number = $scope.$index + 1;
     this.nick = 'Player' + ($scope.$index + 1);
     this.role = club.ROLES[0];
@@ -31,6 +32,9 @@ var Player = angular.module('player', ['game'])
             console.log('el', el);
             var protocol = ctrls[0],
                 player = ctrls[1];
+
+            //TODO @IL  are you sure, that you have to assign "player Controller" to "protocol" field? especially
+            // inside directive
             protocol.game.playerLines[$scope.$index] = player;
             console.log('protocol.game', protocol.game);
         }
