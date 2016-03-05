@@ -1,16 +1,15 @@
 angular.module('metadata')
-.controller('MetadataCtrl', ['$scope', 'club', MetadataCtrl]);
+.controller('MetadataCtrl', ['$scope', 'game', MetadataCtrl]);
 
-function MetadataCtrl ($scope, club) {
+function MetadataCtrl ($scope, game) {
     var vm = this;
+    vm.data = game.metadata;
     //======= FIELDS =========
-    vm.TABLES = club.TABLES;
-    vm.WIN = club.WIN;
 
-    vm.table = club.TABLES[0];
-    vm.win = club.WIN[0];
+    vm.data.table = $scope.tables[0];
+    vm.data.win = $scope.wins[0];
 
-    vm.date = new Date();
-    vm.ref = 'Merlin';
-    vm.gameNumber = 1;
+    vm.data.date = new Date();
+    vm.data.ref = 'Merlin';
+    vm.data.gameNumber = 1;
 }

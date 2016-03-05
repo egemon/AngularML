@@ -4,15 +4,13 @@ angular.module('player')
 function PlayerCtrl ($scope, game, club) {
     var vm = this;
     //======= FIELDS =========
-    vm.number = $scope.index + 1;
-    vm.nick = 'Player' + ($scope.index + 1);
-    vm.ROLES = club.ROLES;
-    vm.MAX_FALLS = club.MAX_FALLS;
-
-    vm.role = club.ROLES[0];
-    vm.falls = 0;
-    vm.BP = false;
-    vm.BR = false;
+    vm.data = game.playerLines[$scope.number];
+    vm.data.number = $scope.number + 1;
+    vm.data.nick = 'Player' + ($scope.number + 1);
+    vm.data.role = $scope.roles[0];
+    vm.data.falls = 0;
+    vm.data.BP = false;
+    vm.data.BR = false;
 
     //======== METHODS ==========
     vm.decrFall = decrFall;
@@ -20,10 +18,11 @@ function PlayerCtrl ($scope, game, club) {
 
     ///////////////
     function decrFall() {
-        vm.falls--;
+        vm.data.falls--;
     }
     function incrFall() {
-        vm.falls++;
+        vm.data.falls++;
     }
+
 }
 

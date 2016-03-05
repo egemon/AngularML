@@ -1,7 +1,11 @@
 angular.module('game')
 .factory('game',['club', game]);
 function game (club) {
-    var playerLines = new Array(club.PLAYER_NUMBER);
+    var playerLines = [];
+    for (var i = 0; i < club.PLAYER_NUMBER; i++) {
+        playerLines.push({});
+    }
+
     return {
         playerLines: playerLines,
         metadata: {}
