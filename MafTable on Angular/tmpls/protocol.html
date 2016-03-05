@@ -3,7 +3,7 @@
   <timer></timer>
   <div ng-include="players-header.html"></div>
   <div class="player-container">
-    <player ng-repeat="player in protocol.game.playerLines track by $index">
+    <player ng-repeat="player in protocol.game.playerLines track by $index" index="$index">
     </player>
     <button class= "btn btn-success" ng-disabled="ProtocolForm.$invalid" ng-click="protocol.saveGame(ProtocolForm)">Внести</button>
     <div ng-show="ProtocolForm.$invalid">

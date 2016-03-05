@@ -4,6 +4,9 @@ angular.module('metadata')
 function MetadataCtrl ($scope, club) {
     var vm = this;
     //======= FIELDS =========
+    vm.TABLES = club.TABLES;
+    vm.WIN = club.WIN;
+
     vm.table = club.TABLES[0];
     vm.win = club.WIN[0];
 

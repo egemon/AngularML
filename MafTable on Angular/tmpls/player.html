@@ -3,12 +3,12 @@
 <input class="best-checkbox" type="checkbox" name="best" value="" ng-model="player.BR">
 <input required class="player-nick" type="text" ng-model="player.nick">
 <select required class="player-role" name="" id="" ng-model="player.role">
-    <option ng-repeat= "role in Protocol.ROLES">{{role}}</option>
+    <option ng-repeat= "role in player.ROLES">{{role}}</option>
 </select>
 <span class="falls">
     <button type="" class="decrFall" ng-disabled="player.falls == 0" ng-click="player.decrFall()">-</button>
     <span>{{player.falls}}</span>
-    <button type="" class="incrFall" ng-disabled="player.falls == Protocol.MAX_FALLS" ng-click="player.incrFall()">+</button>
+    <button type="" class="incrFall" ng-disabled="player.falls == player.MAX_FALLS" ng-click="player.incrFall()">+</button>
 </span>
 <!--     <input type="checkbox">Убит
 <input type="checkbox">Проверен шерифом

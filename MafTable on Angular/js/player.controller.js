@@ -4,8 +4,11 @@ angular.module('player')
 function PlayerCtrl ($scope, game, club) {
     var vm = this;
     //======= FIELDS =========
-    vm.number = $scope.$index + 1;
-    vm.nick = 'Player' + ($scope.$index + 1);
+    vm.number = $scope.index + 1;
+    vm.nick = 'Player' + ($scope.index + 1);
+    vm.ROLES = club.ROLES;
+    vm.MAX_FALLS = club.MAX_FALLS;
+
     vm.role = club.ROLES[0];
     vm.falls = 0;
     vm.BP = false;
