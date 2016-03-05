@@ -1,19 +1,4 @@
-function MetadataCtrl ($scope, club) {
-
-    //======= FIELDS =========
-    this.table = club.TABLES[0];
-    this.win = club.WIN[0];
-
-    this.date = new Date();
-    this.ref = 'Merlin';
-    this.gameNumber = 1;
-}
-
-//======== METHODS ==========
-// MetadataCtrl.prototype.method =
-
-var Metadata = angular.module('metadata', ['club'])
-.controller('MetadataCtrl', MetadataCtrl)
+angular.module('metadata')
 .directive('metadata', function () {
     return {
         restrict: 'E',

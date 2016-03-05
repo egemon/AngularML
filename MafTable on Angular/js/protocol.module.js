@@ -1,0 +1,1 @@
+angular.module('ProtocolApp', ['player', 'metadata', 'timer', 'sync', 'club']);
