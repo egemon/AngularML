@@ -1,6 +1,5 @@
-
-angular.module('player')
-.directive('player', function ($templateCache) {
+angular.module('ProtocolApp')
+.directive('player', function () {
     return {
         restrict: 'E',
         templateUrl: 'tmpls/player.html',

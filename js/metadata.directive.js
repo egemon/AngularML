@@ -1,4 +1,4 @@
-angular.module('metadata')
+angular.module('ProtocolApp')
 .directive('metadata', function () {
     return {
         restrict: 'E',

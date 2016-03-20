@@ -1,4 +1,4 @@
-angular.module('player')
+angular.module('ProtocolApp')
 .controller('PlayerCtrl', ['$scope', 'game', 'club', PlayerCtrl]);
 
 function PlayerCtrl ($scope, game, club) {

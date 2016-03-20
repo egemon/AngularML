@@ -1,4 +1,4 @@
-angular.module('game')
+angular.module('ProtocolApp')
 .factory('game',['club', game]);
 function game (club) {
     var playerLines = [];

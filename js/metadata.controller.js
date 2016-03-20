@@ -1,4 +1,4 @@
-angular.module('metadata')
+angular.module('ProtocolApp')
 .controller('MetadataCtrl', ['$scope', 'game', MetadataCtrl]);
 
 function MetadataCtrl ($scope, game) {
