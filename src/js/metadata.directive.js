@@ -1,8 +1,8 @@
 angular.module('ProtocolApp')
 .directive('metadata', function () {
     return {
-        restrict: 'E',
-        templateUrl: 'tmpls/metadata.html',
+        restrict: 'EA',
+        templateUrl: 'src/tmpls/metadata.html',
         controller: 'MetadataCtrl as metadata',
         scope: {
             tables: '=',

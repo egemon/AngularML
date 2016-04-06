@@ -1,0 +1,34 @@
+<form novalidate accept-charset="utf-8" name="ProtocolForm" ng-submit="">
+  <div class="metadata-container">
+    <table metadata
+      wins="protocol.WIN"
+      tables="protocol.TABLES"
+      class="table table-bordered table-hover"
+    >
+    </table >
+    <div class="button-container">
+      <timer></timer>
+      <button class= "btn btn-success" ng-disabled="ProtocolForm.$invalid" ng-click="protocol.saveGame(ProtocolForm)">Внести</button>
+    </div>
+    <div ng-show="ProtocolForm.$invalid">
+      Пожалуйста заполните все игровые ники и необходимые поля!
+    </div>
+  </div>
+  <div class="protocol-container">
+    <table class="table table-bordered table-hover clearfix">
+      <caption>Бланк</caption>
+      <thead>
+        <tr ng-include="'src/tmpls/players-header.html'"></tr>
+      </thead>
+      <tbody class="player-container">
+        <tr player
+          ng-repeat="player in protocol.game.playerLines track by $index"
+          number="$index"
+          max-falls="protocol.MAX_FALLS"
+          roles="protocol.ROLES"
+        >
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>

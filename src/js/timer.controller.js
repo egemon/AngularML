@@ -2,9 +2,10 @@ angular.module('timer')
 .controller('timerCtrl', ['$scope', '$interval', timerCtrl]);
 
 function timerCtrl ($scope, $interval) {
+    var STATES = ['Старт', 'Пауза'];
     var vm = this;
     //======= FIELDS =========
-    vm.state = 'Start';
+    vm.state = 'Старт';
     vm.time = 0;
 
 
@@ -16,20 +17,20 @@ function timerCtrl ($scope, $interval) {
 
     function toggleState() {
         switch(vm.state) {
-            case 'Start':
+            case 'Старт':
                 intervalID = $interval(increaseTime, 1000);
-                vm.state = 'Pause';
+                vm.state = 'Пауза';
             break;
-            case 'Pause':
+            case 'Пауза':
                 $interval.cancel(intervalID);
-                vm.state = 'Start';
+                vm.state = 'Старт';
             break;
         }
     }
 
     function reset() {
         vm.time = 0;
-        vm.state = 'Start';
+        vm.state = 'Старт';
         $interval.cancel(intervalID);
     }
 

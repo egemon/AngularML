@@ -1,8 +1,8 @@
 angular.module('ProtocolApp')
 .directive('player', function () {
     return {
-        restrict: 'E',
-        templateUrl: 'tmpls/player.html',
+        restrict: 'EA',
+        templateUrl: 'src/tmpls/player.html',
         controller: 'PlayerCtrl as player',
         scope: {
             number: '=',

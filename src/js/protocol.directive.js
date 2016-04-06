@@ -2,7 +2,7 @@ angular.module('ProtocolApp')
 .directive('protocol', function () {
     return {
         restrict: "E",
-        templateUrl: 'tmpls/protocol.html',
+        templateUrl: 'src/tmpls/protocol.html',
         controller: 'ProtocolCtrl as protocol'
     };
 });

@@ -8,11 +8,6 @@ player {
     height: 15px;
     margin: 17px 0;
 }
-.player-number {
-    display: inline-block;
-    line-height: 50px;
-    width: 15px;
-}
 player .player-nick,
 player .player-role {
     margin: 10px 0px;

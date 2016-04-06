@@ -1,0 +1,17 @@
+protocol-header{
+    display: block;
+}
+table,
+.button-container {
+    text-align: center;
+}
+
+.protocol-container {
+    width: 69%;
+    float: left;
+}
+
+.metadata-container {
+    width: 30%;
+    float: left;
+}
