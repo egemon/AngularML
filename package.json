@@ -1,0 +1,37 @@
+{
+  "name": "NgMafTable",
+  "version": "1.0.0",
+  "description": "MafTable on Angular",
+  "main": "gulpfile.js",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-cssnano": "*",
+    "gulp-jshint": "*",
+    "gulp-uglify": "*",
+    "gulp-rename": "*",
+    "gulp-concat": "*",
+    "gulp-notify": "*",
+    "gulp-cache": "*",
+    "gulp-browserify": "*",
+    "gulp-add-src": "*",
+    "gulp-htmlmin": "*",
+    "gulp-angular-templatecache": "*",
+    "run-sequence": "*",
+    "del": "*"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/egemon/AngularML.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/egemon/AngularML/issues"
+  },
+  "homepage": "https://github.com/egemon/AngularML"
+}
