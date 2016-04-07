@@ -20,7 +20,7 @@ function syncService ($http, club) {
     }
 
     function pushToServer (game) {
-        return $http.post(club.BASE_SERVER_URL, _stringify({games: [game]}))
+        return $http.post(club.BASE_SERVER_URL + club.SYNC_URL, _stringify({games: [game]}))
             .then(_gamesSaved, _errorDuringSaving);
     }
 
