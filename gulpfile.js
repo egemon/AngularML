@@ -13,30 +13,16 @@ var gulp = require('gulp'),
     runSequence = require('run-sequence'),
     del = require('del');
 
-gulp.task('css', function() {
-  return gulp.src('src/css/**')
-    .pipe(add.append('src/js/lib/bootstrap-css/css/bootstrap.min.css'))
-    .pipe(concat('main.css'))
-    .pipe(gulp.dest('dest/assets/css'))
-    .pipe(cssnano())
-    .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('dest/assets/css'))
-    .pipe(notify({ message: 'Styles task complete' }));
-});
 
+//this task lints your js code
 gulp.task('lint', function () {
-    return gulp.src('src/js/*.js')
+    return gulp.src(['src/js/**/*.js', '!src/js/lib/*.js'])
     // .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'));
 });
 
-gulp.task('html', function () {
-    return gulp.src(['main.html'])
-    .pipe(htmlmin({collapseWhitespace: true}))
-    .pipe(gulp.dest('dest/assets'));
-});
-
-gulp.task('tmpls', function () {
+//this task register all ng-tmpls
+gulp.task('tmpls', ['lint'], function () {
   return gulp.src('src/tmpls/**/*.html')
     .pipe(templateCache({
       root: 'src/tmpls',
@@ -45,81 +31,97 @@ gulp.task('tmpls', function () {
     .pipe(gulp.dest('src/js/angulars/config/'));
 });
 
-gulp.task('js', ['lint', 'tmpls'], function() {
+// this task build all angular modules to ng.min,js
+gulp.task('js-ng-app', ['tmpls'], function () {
+    return gulp.src(['src/js/angulars/modules/*.js'])
+    .pipe(add.append(['src/js/angulars/**/*.js', '!src/js/angulars/modules/*.js']))
+    .pipe(concat('ng.js'))
+    .pipe(gulp.dest('dest/assets/js'))
+    .pipe(uglify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('dest/assets/js'));
+});
 
+// this task copy angular file to MafSite
+gulp.task('deploy-ng',['js-ng-app'], function() {
+    return gulp.src('dest/assets/js/ng.min.js')
+    .pipe(gulp.dest('../MafSite_Angular/src/js/lib/MafTable/'));
+});
+
+//this task collect all libs
+gulp.task('js-lib', function () {
   return gulp.src(['src/js/app.js'])
     .pipe(browserify({
         debug: true,
         insertGlobals: true
     }))
-    .pipe(add.append('src/js/angulars/modules/*.js'))
-    .pipe(add.append(['src/js/angulars/**/*.js', '!src/js/angulars/modules/*.js']))
-    .pipe(concat('main.js'))
-    .pipe(gulp.dest('dest/assets/js'))
     .pipe(uglify())
+    .pipe(gulp.dest('dest/assets/js/libs.min.js'));
+});
+
+// this task unite ng-modules and libs
+gulp.task('js',['js-ng-app', 'js-lib'] ,function() {
+  return gulp.src('dest/assets/js/libs.js')
+    .pipe(add.append('dest/assets/js/ng.min.js'))
+    .pipe(concat())
+    .pipe(gulp.dest('dest/assets/js/main.min.js'));
+});
+
+
+// this task build all css
+gulp.task('css', function() {
+  return gulp.src('src/css/**')
+    .pipe(add.append('src/js/lib/bootstrap-css/css/bootstrap.min.css'))
+    .pipe(concat('main.css'))
+    .pipe(gulp.dest('dest/assets/css'))
+    .pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('dest/assets/js'))
-    .pipe(notify({ message: 'Scripts task complete' }));
+    .pipe(gulp.dest('dest/assets/css'));
 });
 
-gulp.task('js-prod', ['lint', 'tmpls'], function() {
-
-    return gulp.src(['src/js/angulars/modules/*.js'])
-    .pipe(add.append(['src/js/angulars/**/*.js', '!src/js/angulars/modules/*.js']))
-    .pipe(concat('maftable.js'))
-    .pipe(gulp.dest('dest/assets/js'))
-    .pipe(uglify())
-    .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('../MafSite_Angular/src/js/lib/MafTable/'))
-    .pipe(notify({ message: 'JS Prod task complete' }));
-});
-gulp.task('css-prod', ['css'], function() {
-
-    return gulp.src(['dest/assets/css/main.min.css'])
-    .pipe(gulp.dest('../MafSite_Angular/src/css/'))
-    .pipe(notify({ message: 'CSS Prod task complete' }));
+// this task copy css file to MafSite
+gulp.task('deploy-css',['css'], function() {
+    return gulp.src('dest/assets/css/main.min.css')
+    .pipe(gulp.dest('../MafSite_Angular/src/css/'));
 });
 
 
-gulp.task('prod', ['css-prod', 'js-prod']);
+// this task deploy MafTable to MafSite
+gulp.task('deploy',['deploy-css', 'deploy-ng']);
 
-
-gulp.task('clean', function() {
-    return del(['dest']);
-});
-
-gulp.task('all', ['clean'], function() {
-  return gulp.start('css', 'js', 'html');
-});
-
-gulp.task('default', function() {
-  runSequence('all', 'deploy', 'watch');
-});
-
-//GENERAL WATCHER
-function reactOn(task) {
-  return function reacter() {
-    runSequence(task, 'deploy');
-  };
-}
-
-// watchers
+// this task wathes for changes
 gulp.task('watch', function() {
   // Create LiveReload server
 
   // Watch .scss files
-  gulp.watch('src/css/**/*.css', reactOn('css'));
+  gulp.watch('src/css/**/*.css', function () {
+    runSequence('css', 'deploy-css');
+  });
 
   // Watch .js files
-  gulp.watch(['src/js/**/*.js', 'src/tmpls/pages/**/*.html', '!src/js/angulars/configs/templates.js'], reactOn('js'));
+  gulp.watch(['src/js/**/*.js', 'src/tmpls/pages/**/*.html', '!src/js/angulars/configs/templates.js'], function () {
+    runSequence('js-ng-app', 'deploy-ng');
+  });
 
-  gulp.watch('src/tmpls/base.html', reactOn('html'));
-
-  // Watch any files in dest/, reload on change
-  gulp.watch(['dest/**']);
 });
 
-gulp.task('deploy', function () {
-  return gulp.src('dest/**/**')
-    .pipe(gulp.dest('../bs/public/MafTable'));
+// this task build all and deploy to MafSite
+// then it wathces for changes
+gulp.task('default', ['deploy'], function() {
+  return gulp.start('watch');
+});
+
+
+
+// ======== NOT IN USE ===========
+//this task minify your html
+gulp.task('html', function () {
+    return gulp.src(['main.html'])
+    .pipe(htmlmin({collapseWhitespace: true}))
+    .pipe(gulp.dest('dest/assets'));
+});
+
+//this task cleans directory
+gulp.task('clean', function() {
+    return del(['dest']);
 });
