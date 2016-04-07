@@ -37,8 +37,11 @@ gulp.task('html', function () {
 
 gulp.task('tmpls', function () {
   return gulp.src('src/tmpls/**/*.html')
-    .pipe(templateCache())
-    .pipe(gulp.dest('src/js/config/'));
+    .pipe(templateCache({
+      root: 'src/tmpls/pages',
+      standalone: true
+    }))
+    .pipe(gulp.dest('src/js/angulars/config/'));
 });
 
 gulp.task('js', ['lint', 'tmpls'], function() {
@@ -57,6 +60,27 @@ gulp.task('js', ['lint', 'tmpls'], function() {
     .pipe(gulp.dest('dest/assets/js'))
     .pipe(notify({ message: 'Scripts task complete' }));
 });
+
+gulp.task('js-prod', ['lint', 'tmpls'], function() {
+
+    return gulp.src(['src/js/angulars/modules/*.js'])
+    .pipe(add.append(['src/js/angulars/**/*.js', '!src/js/angulars/modules/*.js']))
+    .pipe(concat('maftable.js'))
+    .pipe(gulp.dest('dest/assets/js'))
+    .pipe(uglify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest('../MafSite_Angular/src/js/lib/MafTable/'))
+    .pipe(notify({ message: 'JS Prod task complete' }));
+});
+gulp.task('css-prod', ['css'], function() {
+
+    return gulp.src(['dest/assets/css/main.min.css'])
+    .pipe(gulp.dest('../MafSite_Angular/src/css/'))
+    .pipe(notify({ message: 'CSS Prod task complete' }));
+});
+
+
+gulp.task('prod', ['css-prod', 'js-prod']);
 
 
 gulp.task('clean', function() {
