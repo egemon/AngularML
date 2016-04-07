@@ -1,1 +1,1 @@
-// require('./lib/angular/angular.min.js');
+// require('./lib/angular/angular.js');

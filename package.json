@@ -3,23 +3,25 @@
   "version": "1.0.0",
   "description": "MafTable on Angular",
   "main": "gulpfile.js",
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
+    "del": "*",
     "gulp": "^3.9.1",
-    "gulp-cssnano": "*",
-    "gulp-jshint": "*",
-    "gulp-uglify": "*",
-    "gulp-rename": "*",
-    "gulp-concat": "*",
-    "gulp-notify": "*",
-    "gulp-cache": "*",
-    "gulp-browserify": "*",
     "gulp-add-src": "*",
-    "gulp-htmlmin": "*",
     "gulp-angular-templatecache": "*",
-    "run-sequence": "*",
-    "del": "*"
+    "gulp-beautify": "^2.0.0",
+    "gulp-browserify": "*",
+    "gulp-cache": "*",
+    "gulp-concat": "*",
+    "gulp-cssbeautify": "^0.1.3",
+    "gulp-cssnano": "*",
+    "gulp-htmlmin": "*",
+    "gulp-if": "^2.0.0",
+    "gulp-jshint": "*",
+    "gulp-notify": "*",
+    "gulp-rename": "*",
+    "gulp-uglify": "*",
+    "run-sequence": "*"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"

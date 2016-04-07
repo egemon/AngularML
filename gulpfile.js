@@ -1,5 +1,10 @@
+// igonore minifying tasks
+var isProduction = false;
 var gulp = require('gulp'),
+    _if = require('gulp-if'),
+    beautify = require('gulp-beautify'),
     cssnano = require('gulp-cssnano'),
+    cssbeautify = require('gulp-cssbeautify'),
     jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
     rename = require('gulp-rename'),
@@ -37,7 +42,7 @@ gulp.task('js-ng-app', ['tmpls'], function () {
     .pipe(add.append(['src/js/angulars/**/*.js', '!src/js/angulars/modules/*.js']))
     .pipe(concat('ng.js'))
     .pipe(gulp.dest('dest/assets/js'))
-    .pipe(uglify())
+    .pipe(_if(isProduction, uglify(), beautify()))
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('dest/assets/js'));
 });
@@ -55,7 +60,7 @@ gulp.task('js-lib', function () {
         debug: true,
         insertGlobals: true
     }))
-    .pipe(uglify())
+    .pipe(_if(isProduction, uglify(), beautify()))
     .pipe(gulp.dest('dest/assets/js/libs.min.js'));
 });
 
@@ -74,7 +79,7 @@ gulp.task('css', function() {
     .pipe(add.append('src/js/lib/bootstrap-css/css/bootstrap.min.css'))
     .pipe(concat('main.css'))
     .pipe(gulp.dest('dest/assets/css'))
-    .pipe(cssnano())
+    .pipe(_if(isProduction, cssnano(), cssbeautify()))
     .pipe(rename({suffix: '.min'}))
     .pipe(gulp.dest('dest/assets/css'));
 });
