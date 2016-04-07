@@ -15,8 +15,8 @@ var gulp = require('gulp'),
 
 gulp.task('css', function() {
   return gulp.src('src/css/**')
-    .pipe(concat('main.css'))
     .pipe(add.append('src/js/lib/bootstrap-css/css/bootstrap.min.css'))
+    .pipe(concat('main.css'))
     .pipe(gulp.dest('dest/assets/css'))
     .pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
