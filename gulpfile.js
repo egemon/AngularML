@@ -39,7 +39,7 @@ gulp.task('html', function () {
 gulp.task('tmpls', function () {
   return gulp.src('src/tmpls/**/*.html')
     .pipe(templateCache({
-      root: 'src/tmpls/pages',
+      root: 'src/tmpls',
       standalone: true
     }))
     .pipe(gulp.dest('src/js/angulars/config/'));
