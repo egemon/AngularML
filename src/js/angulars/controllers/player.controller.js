@@ -5,7 +5,6 @@ function PlayerCtrl ($scope, game, club) {
     var vm = this;
     //======= FIELDS =========
     vm.data = game.playerLines[$scope.number];
-    vm.data.number = $scope.number + 1;
     vm.data.nick = 'Player' + ($scope.number + 1);
     vm.data.role = $scope.roles[0];
     vm.data.falls = 0;
