@@ -3,25 +3,28 @@ angular.module('ProtocolApp')
 
 function ProtocolCtrl ($scope, $http, sync, club, game) {
     console.log('ProtocolCtrl init');
-    var vm = this;
 
-    //========== FIELDS ========
+    // ========== INIT BLOCK ===========
+    var vm = this;
+    sync.getNicks().then(function (nicks) {
+        vm.playerNicks = nicks;
+    });
+
+    //========== PUBLIC FIELDS ========
     vm.game = game;
     vm.ROLES = club.ROLES;
     vm.MAX_FALLS = club.MAX_FALLS;
     vm.TABLES = club.TABLES;
     vm.WIN = club.WIN;
     vm.playerNicks = [];
-    sync.getNicks().then(function (nicks) {
-        vm.playerNicks = nicks;
-    });
 
-    //========== Methods ========
+    //========== PUBLIC API ========
     vm.saveGame = saveGame;
     vm.loadGame = loadGame;
+    vm.deleteGame = deleteGame;
 
 
-    /////////////
+    // ============ PUBLIC FUNCTIONS ========
     function saveGame () {
         console.log('PROTOCOL saveGame()', vm.game);
         sync.push(vm.game);
@@ -30,6 +33,13 @@ function ProtocolCtrl ($scope, $http, sync, club, game) {
     function loadGame() {
         sync.pull(vm.game.metadata).then(handleLoadedGame.bind(this, vm.game));
     }
+
+    function deleteGame () {
+        console.log('PROTOCOL deleteGame()', vm.game);
+        sync.delete(vm.game.metadata);
+    }
+
+    // ============ PRIVATE FUNCTIONS ========
 
     function handleLoadedGame (oldGame, newGame) {
         console.log('[protocol.controller] handleLoadedGame() ', oldGame, newGame);

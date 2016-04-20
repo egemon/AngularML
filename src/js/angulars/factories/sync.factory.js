@@ -50,6 +50,12 @@ function syncService ($http, club) {
             .then(handleResponse);
     }
 
+    function deleteFromServer(metadata) {
+        metadata = angular.copy(metadata);
+        return $http.post(club.BASE_SERVER_URL + club.DELETE_URL, formatDate(metadata))
+            .then(handleResponse);
+    }
+
     function getNicks() {
         return $http.post(club.BASE_SERVER_URL + club.PLAYERS_URL).then(function (data) {
             console.log('[sync.factory] getNicks() data ', arguments);
@@ -65,6 +71,7 @@ function syncService ($http, club) {
     return {
         push: pushToServer,
         pull: pullFromServer,
+        delete: deleteFromServer,
         getNicks: getNicks
     };
 }
