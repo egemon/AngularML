@@ -30,6 +30,7 @@ function DaysCtrl ($scope, game) {
     this.startGame = startGame;
     this.addVote = addVote;
     this.addDay = addDay;
+    this.removeVote = removeVote;
 
     function startGame () {
         console.log('[days.controller] startGame()');
@@ -54,5 +55,10 @@ function DaysCtrl ($scope, game) {
     function addDay() {
         this.days.push(angular.copy(defaultDay));
         currentDay++;
+    }
+
+    function removeVote(vote ,arr) {
+        var i = arr.indexOf(vote);
+        arr.splice(i, 1);
     }
 }
