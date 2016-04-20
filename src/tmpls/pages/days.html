@@ -1,5 +1,8 @@
 <div class="day" ng-repeat="(i, day) in DaysCtrl.days track by $index">
-    <div class="day-title">День {{::i}}</div>
+    <div class="day-title">
+        День {{::i}}
+        <button class="btn btn-primary" ng-click="DaysCtrl.removeItem(day, DaysCtrl.days)">-</button>
+    </div>
     <div class="votes" ng-repeat="(j, details) in day.votes">
         <span>
             Кто
@@ -24,7 +27,7 @@
             <button type="" class="incrFall btn btn-primary" ng-disabled="details.sum == 10" ng-click="DaysCtrl.incrNumber(details, 'sum')">+</button> -->
             <input class="votes-number-input" type="number" ng-model="details.sum">
         </span>
-        <button class="btn btn-primary" ng-click="DaysCtrl.removeVote(details, day.votes)">-</button>
+        <button class="btn btn-primary" ng-click="DaysCtrl.removeItem(details, day.votes)">-</button>
     </div>
 
     <button class="btn btn-primary" ng-click="DaysCtrl.addVote(day.votes)">Добавить выставление</button>
