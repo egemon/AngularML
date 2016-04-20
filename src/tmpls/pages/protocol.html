@@ -8,11 +8,17 @@
     </table >
     <div class="button-container">
       <timer></timer>
-      <button class= "btn btn-primary" ng-disabled="ProtocolForm.$invalid" ng-click="protocol.saveGame(ProtocolForm)">Внести</button>
+      <button class= "btn btn-primary" id="control-btn" ng-disabled="ProtocolForm.$invalid" ng-click="protocol.saveGame()">Внести</button>
+      <button class= "btn btn-primary" id="control-btn" ng-disabled="ProtocolForm.$invalid" ng-click="protocol.startGame()">Начать игру</button>
     </div>
     <div ng-show="ProtocolForm.$invalid">
       Пожалуйста заполните все игровые ники и необходимые поля!
     </div>
+  <days
+    state="protocol.state"
+    days="protocol.days"
+    players="protocol.game.playerLines"
+  ></days>
   </div>
   <div class="protocol-container">
     <table class="table table-bordered table-hover clearfix">

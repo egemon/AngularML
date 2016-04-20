@@ -1,0 +1,19 @@
+days {
+    display: block;
+}
+.days-input {
+    display: inline-block;
+}
+.results,
+.votes {
+    display: block;
+}
+.day {
+    border: 1px solid #fff;
+    border-radius: 15px;
+    padding: 2px;
+    margin-right: 5px;
+}
+.votes-number-input{
+    display: inline-block;
+}

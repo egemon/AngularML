@@ -1,5 +1,6 @@
 #timerContainer {
-    margin: 10px;
+    float: left;
+    margin: 10px 10px 10px 0;
     border: 1px solid green;
     padding: 10px;
     border-radius: 10px;

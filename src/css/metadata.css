@@ -1,17 +1,29 @@
 protocol-header{
     display: block;
 }
-table,
+
 .button-container {
     text-align: center;
+    overflow: hidden;
 }
 
-.protocol-container {
-    width: 69%;
-    float: left;
-}
-
+.protocol-container,
 .metadata-container {
-    width: 30%;
     float: left;
+}
+
+#control-btn {
+    line-height: 30px;
+    padding: 5px 5px;
+    font-size: 16px;
+    margin-top: 15px;
+}
+
+protocol .table>tbody>tr>td,
+protocol .table>tbody>tr>th,
+protocol .table>tfoot>tr>td,
+protocol .table>tfoot>tr>th,
+protocol .table>thead>tr>td,
+protocol .table>thead>tr>th{
+    padding: 0 8px;
 }

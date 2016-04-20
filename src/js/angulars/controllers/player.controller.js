@@ -1,7 +1,7 @@
 angular.module('ProtocolApp')
-.controller('PlayerCtrl', ['$scope', 'game', 'club', PlayerCtrl]);
+.controller('PlayerCtrl', ['$scope', 'game', PlayerCtrl]);
 
-function PlayerCtrl ($scope, game, club) {
+function PlayerCtrl ($scope, game) {
     var vm = this;
     //======= FIELDS =========
     vm.data = game.playerLines[$scope.number];

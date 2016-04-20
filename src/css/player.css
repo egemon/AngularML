@@ -8,11 +8,20 @@ player {
     height: 15px;
     margin: 17px 0;
 }
-player .player-nick,
+player .player-nick-input,
 player .player-role {
     margin: 10px 0px;
 }
 
-.player-nick.ng-touched.ng-invalid {
+.player-nick-input.ng-touched.ng-invalid {
     border: 1px solid black;
+}
+
+.player-nick-input {
+    font-weight: bold;
+    font-size: 13px;
+}
+.player-container .player-role {
+    font-family: cursive;
+    font-size: 13px;
 }

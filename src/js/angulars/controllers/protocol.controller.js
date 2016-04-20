@@ -16,8 +16,9 @@ function ProtocolCtrl ($scope, $http, sync, club, game) {
     vm.saveGame = saveGame;
 
     /////////////
-    function saveGame (ProtocolForm) {
+    function saveGame () {
         console.log('PROTOCOL saveGame()', vm.game);
         sync.push(vm.game);
     }
+
 }

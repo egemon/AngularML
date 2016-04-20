@@ -50,7 +50,8 @@ gulp.task('js-ng-app', ['tmpls'], function () {
 // this task copy angular file to MafSite
 gulp.task('deploy-ng',['js-ng-app'], function() {
     return gulp.src('dest/assets/js/ng.min.js')
-    .pipe(gulp.dest('../MafSite_Angular/src/js/lib/MafTable/'));
+    .pipe(gulp.dest('../MafSite_Angular/src/js/lib/MafTable/'))
+    .pipe(notify('Deploy-ng finished!'));
 });
 
 //this task collect all libs
@@ -87,7 +88,8 @@ gulp.task('css', function() {
 // this task copy css file to MafSite
 gulp.task('deploy-css',['css'], function() {
     return gulp.src('dest/assets/css/main.min.css')
-    .pipe(gulp.dest('../MafSite_Angular/src/css/'));
+    .pipe(gulp.dest('../MafSite_Angular/src/css/'))
+    .pipe(notify('Deploy-css finished!'));
 });
 
 
