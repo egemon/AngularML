@@ -4,6 +4,7 @@ angular.module('club').constant('club', {
     TABLES: ['BakerStreet', 'FleetStreet', 'DowningStreet', 'AbbeyRoad'],
     BASE_SERVER_URL: 'http://bs-mafiaclub.rhcloud.com/',
     SYNC_URL: 'sync',
+    LOAD_URL: 'load',
     PLAYERS_URL: 'players',
     PLAYER_NUMBER: 10,
     CRITICAL_FALLS: 3,

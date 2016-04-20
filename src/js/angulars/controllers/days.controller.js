@@ -1,7 +1,7 @@
 angular.module('ProtocolApp')
-.controller('DaysCtrl', ['$scope','game', DaysCtrl]);
+.controller('DaysCtrl', ['$scope', DaysCtrl]);
 
-function DaysCtrl ($scope, game) {
+function DaysCtrl ($scope) {
     console.log('[days.controller] init');
     var defaultVote = {
         who: '',
@@ -21,7 +21,7 @@ function DaysCtrl ($scope, game) {
 
     this.state = 'stopped';
 
-    game.days = this.days = [angular.copy(defaultDay)];
+    $scope.days = [angular.copy(defaultDay)];
     var currentDay = 0;
 
 
@@ -53,7 +53,7 @@ function DaysCtrl ($scope, game) {
     }
 
     function addDay() {
-        this.days.push(angular.copy(defaultDay));
+        $scope.days.push(angular.copy(defaultDay));
         currentDay++;
     }
 

@@ -3,21 +3,20 @@ angular.module('sync')
 
 function syncService ($http, club) {
 
-    function _gamesSaved (data) {
-        alert('Games was saved!');
-    }
-
-    function _errorDuringSaving (err) {
-        console.log('_errorDuringSaving = ', err);
-
-        alert('Error during saving!');
+    function handleResponse(response) {
+        console.log('[syncService] handleResponse()', arguments);
+        if (response.data.errorText) {
+            alert(response.data.errorText);
+        } else {
+            return response.data;
+        }
     }
 
     function formatGame(game) {
         console.log('[sync.factory] formatGame() ', arguments);
 
         var newGame = angular.copy(game);
-        newGame.metadata.date = formatDate(newGame.metadata.date);
+        formatDate(newGame.metadata);
 
         for (var i = 0; i < newGame.playerLines.length; i++) {
             var player = newGame.playerLines[i];
@@ -35,13 +34,20 @@ function syncService ($http, club) {
         return {games: [newGame]};
     }
 
-    function formatDate (date) {
-        return date.toISOString().split('T')[0];
+    function formatDate (metadata) {
+        metadata.date = metadata.date.toISOString().split('T')[0];
+        return metadata;
     }
 
     function pushToServer (game) {
         return $http.post(club.BASE_SERVER_URL + club.SYNC_URL, formatGame(game))
-            .then(_gamesSaved, _errorDuringSaving);
+            .then(handleResponse);
+    }
+
+    function pullFromServer(metadata) {
+        metadata = angular.copy(metadata);
+        return $http.post(club.BASE_SERVER_URL + club.LOAD_URL, formatDate(metadata))
+            .then(handleResponse);
     }
 
     function getNicks() {
@@ -58,6 +64,7 @@ function syncService ($http, club) {
 
     return {
         push: pushToServer,
+        pull: pullFromServer,
         getNicks: getNicks
     };
 }

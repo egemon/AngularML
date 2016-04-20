@@ -10,8 +10,8 @@
     </table >
     <div class="button-container">
       <timer></timer>
-      <button class= "btn btn-primary" id="control-btn" ng-disabled="ProtocolForm.$invalid" ng-click="protocol.saveGame()">Внести</button>
-      <!-- <button class= "btn btn-primary" id="control-btn" ng-disabled="ProtocolForm.$invalid" ng-click="protocol.startGame()">Начать игру</button> -->
+      <button class= "btn btn-primary" id="control-btn" ng-disabled="ProtocolForm.$invalid" ng-click="protocol.saveGame()">Сохранить игру</button>
+      <button class= "btn btn-primary" id="control-btn" ng-disabled="!protocol.game.metadata.gameNumber || !protocol.game.metadata.date || !protocol.game.metadata.table" ng-click="protocol.loadGame()">Загрузить игру</button>
     </div>
     <div class="player-hint" ng-show="ProtocolForm.$invalid">
       Пожалуйста заполните все игровые ники и необходимые поля!
@@ -39,7 +39,7 @@
 
   <days
   state="protocol.state"
-  days="protocol.days"
+  days="protocol.game.days"
   players="protocol.game.playerLines"
   ></days>
 </form>

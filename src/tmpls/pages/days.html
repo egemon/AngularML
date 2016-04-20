@@ -1,7 +1,7 @@
-<div class="day" ng-repeat="(i, day) in DaysCtrl.days track by $index">
+<div class="day" ng-repeat="(i, day) in days track by $index">
     <div class="day-title">
         День {{::i}}
-        <button class="btn btn-primary" ng-click="DaysCtrl.removeItem(day, DaysCtrl.days)">-</button>
+        <button class="btn btn-primary" ng-click="DaysCtrl.removeItem(day, days)">-</button>
     </div>
     <div class="votes" ng-repeat="(j, details) in day.votes">
         <span>
@@ -9,7 +9,7 @@
             <select
                 class="days-input"
                 ng-model="details.who"
-                ng-options="player.nick for player in players">
+                ng-options="player.nick for player in players track by player.nick">
             </select>
         </span>
         <span>
@@ -17,7 +17,7 @@
             <select
                 class="days-input"
                 ng-model="details.whom"
-                ng-options="player.nick for player in players">
+                ng-options="player.nick for player in players track by player.nick">
             </select>
         </span>
         <div>
@@ -42,7 +42,7 @@
                 <select
                     class="days-input"
                     ng-model="day.results[key]"
-                    ng-options="player.nick for player in players"
+                    ng-options="player.nick for player in players track by player.nick"
                 >
                 </select>
             </span>

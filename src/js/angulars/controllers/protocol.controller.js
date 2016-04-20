@@ -18,6 +18,8 @@ function ProtocolCtrl ($scope, $http, sync, club, game) {
 
     //========== Methods ========
     vm.saveGame = saveGame;
+    vm.loadGame = loadGame;
+
 
     /////////////
     function saveGame () {
@@ -25,4 +27,39 @@ function ProtocolCtrl ($scope, $http, sync, club, game) {
         sync.push(vm.game);
     }
 
+    function loadGame() {
+        sync.pull(vm.game.metadata).then(handleLoadedGame.bind(this, vm.game));
+    }
+
+    function handleLoadedGame (oldGame, newGame) {
+        console.log('[protocol.controller] handleLoadedGame() ', oldGame, newGame);
+        loadMetadata(oldGame.metadata, newGame.metadata);
+        loadPlayerLines(oldGame.playerLines, newGame.playerLines);
+        loadDays(oldGame.days, newGame.days);
+    }
+
+    function loadMetadata(oldMetadata, newMetadata) {
+        for(var key in newMetadata) {
+            if (key === 'date') {
+                continue;
+            }
+            oldMetadata[key] = newMetadata[key];
+        };
+    };
+
+    function loadPlayerLines (oldPlayers, newPlayers) {
+        newPlayers.forEach(function(newPlayer, i) {
+            var oldPlayer = oldPlayers[i];
+            for(var key in oldPlayer) {
+                oldPlayer[key] = newPlayer[key];
+            };
+        });
+    };
+
+    function loadDays (oldDays, newDays) {
+        oldDays.length = 0;
+        newDays.forEach(function(newDay, i) {
+            oldDays.push(newDay)
+        });
+    };
 }

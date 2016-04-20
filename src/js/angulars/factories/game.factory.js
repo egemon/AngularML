@@ -8,6 +8,7 @@ function game (club) {
 
     return {
         playerLines: playerLines,
-        metadata: {}
+        metadata: {},
+        days: []
     };
 }
