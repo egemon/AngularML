@@ -19,6 +19,22 @@ var gulp = require('gulp'),
     del = require('del');
 
 
+gulp.task('autocomplete-css', function() {
+    gulp.src('src/js/lib/angular-autocomplete/style/autocomplete.css')
+      .pipe(cssnano())
+      .pipe(rename('autocomplete.min.css'))
+      .pipe(gulp.dest('src/css'));
+});
+
+gulp.task('autocomplete-js', function() {
+    gulp.src('src/js/lib/angular-autocomplete/script/autocomplete.js')
+      .pipe(uglify())
+      .pipe(rename('autocomplete.min.js'))
+      .pipe(gulp.dest('src/js/lib/angular-autocomplete/script'));
+});
+
+gulp.task('autocomplete',['autocomplete-css', 'autocomplete-js']);
+
 //this task lints your js code
 gulp.task('lint', function () {
     return gulp.src(['src/js/**/*.js', '!src/js/lib/*.js'])
@@ -37,8 +53,8 @@ gulp.task('tmpls', ['lint'], function () {
 });
 
 // this task build all angular modules to ng.min,js
-gulp.task('js-ng-app', ['tmpls'], function () {
-    return gulp.src(['src/js/angulars/modules/*.js'])
+gulp.task('js-ng-app', ['tmpls', 'autocomplete'], function () {
+    return gulp.src(['src/js/angulars/modules/*.js', 'src/js/lib/angular-autocomplete/script/autocomplete.min.js'])
     .pipe(add.append(['src/js/angulars/**/*.js', '!src/js/angulars/modules/*.js']))
     .pipe(concat('ng.js'))
     .pipe(gulp.dest('dest/assets/js'))
@@ -55,7 +71,7 @@ gulp.task('deploy-ng',['js-ng-app'], function() {
 });
 
 //this task collect all libs
-gulp.task('js-lib', function () {
+gulp.task('js-lib', ['autocomplete'],function () {
   return gulp.src(['src/js/app.js'])
     .pipe(browserify({
         debug: true,

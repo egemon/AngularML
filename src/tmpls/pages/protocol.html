@@ -5,14 +5,15 @@
       wins="protocol.WIN"
       tables="protocol.TABLES"
       class="table table-bordered table-hover"
+      player-nicks="protocol.playerNicks"
     >
     </table >
     <div class="button-container">
       <timer></timer>
       <button class= "btn btn-primary" id="control-btn" ng-disabled="ProtocolForm.$invalid" ng-click="protocol.saveGame()">Внести</button>
-      <button class= "btn btn-primary" id="control-btn" ng-disabled="ProtocolForm.$invalid" ng-click="protocol.startGame()">Начать игру</button>
+      <!-- <button class= "btn btn-primary" id="control-btn" ng-disabled="ProtocolForm.$invalid" ng-click="protocol.startGame()">Начать игру</button> -->
     </div>
-    <div ng-show="ProtocolForm.$invalid">
+    <div class="player-hint" ng-show="ProtocolForm.$invalid">
       Пожалуйста заполните все игровые ники и необходимые поля!
     </div>
   </div>
@@ -29,6 +30,7 @@
           number="$index"
           max-falls="protocol.MAX_FALLS"
           roles="protocol.ROLES"
+          player-nicks="protocol.playerNicks"
         >
         </tr>
       </tbody>

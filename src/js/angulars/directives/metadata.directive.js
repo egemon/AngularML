@@ -6,7 +6,8 @@ angular.module('ProtocolApp')
         controller: 'MetadataCtrl as metadata',
         scope: {
             tables: '=',
-            wins: '='
+            wins: '=',
+            playerNicks: "=",
         }
     };
 });

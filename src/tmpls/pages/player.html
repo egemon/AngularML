@@ -6,10 +6,11 @@
     <input class="best-checkbox" type="checkbox" name="best" value="" ng-model="player.data.BR">
 </td>
 <td>
-    <input required class="player-nick-input form-control" type="text" ng-model="player.data.nick">
+    <autocomplete class="" required ng-model="player.data.nick" data="playerNicks"></autocomplete>
+    <!-- <input required class="player-nick-input form-control" type="text" ng-model="player.data.nick"> -->
 </td>
 <td>
-    <select required class="player-role form-control" name="" id="" ng-model="player.data.role">
+    <select required class="player-role metadata-input" name="" id="" ng-model="player.data.role">
         <option ng-repeat= "role in roles">{{role}}</option>
     </select>
 </td>

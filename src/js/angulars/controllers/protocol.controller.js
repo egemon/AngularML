@@ -11,6 +11,10 @@ function ProtocolCtrl ($scope, $http, sync, club, game) {
     vm.MAX_FALLS = club.MAX_FALLS;
     vm.TABLES = club.TABLES;
     vm.WIN = club.WIN;
+    vm.playerNicks = [];
+    sync.getNicks().then(function (nicks) {
+        vm.playerNicks = nicks;
+    });
 
     //========== Methods ========
     vm.saveGame = saveGame;

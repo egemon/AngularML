@@ -44,7 +44,20 @@ function syncService ($http, club) {
             .then(_gamesSaved, _errorDuringSaving);
     }
 
+    function getNicks() {
+        return $http.post(club.BASE_SERVER_URL + club.PLAYERS_URL).then(function (data) {
+            console.log('[sync.factory] getNicks() data ', arguments);
+            var players =  data.data.data;
+            return players.map(function(el) {
+                return el.nick;
+            });
+        }, function (err) {
+            alert(err);
+        });
+    }
+
     return {
-        push: pushToServer
+        push: pushToServer,
+        getNicks: getNicks
     };
 }

@@ -31,3 +31,10 @@ protocol .table>thead>tr>th{
 protocol button {
     font-family: Barocco_Floral_Initial, Georgia, 'Times New Roman', serif;
 }
+.player-hint {
+    width: 300px;
+}
+.metadata-input {
+    width: 100%;
+    font-size: 13px;
+}
