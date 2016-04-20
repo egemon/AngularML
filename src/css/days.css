@@ -1,5 +1,10 @@
 days {
     display: block;
+    float: left;
+    margin: 35px 0px 0px 3px;
+    font-size: 12px;
+    font-family: cursive;
+    width: 300px;
 }
 .days-input {
     display: inline-block;
@@ -16,4 +21,14 @@ days {
 }
 .votes-number-input{
     display: inline-block;
+}
+
+.votes {
+    border-top: 1px dashed #fff;
+    border-bottom: 1px dashed #fff;
+}
+
+days select,
+days input {
+    width: 67px;
 }

@@ -27,3 +27,7 @@ protocol .table>thead>tr>td,
 protocol .table>thead>tr>th{
     padding: 0 8px;
 }
+
+protocol button {
+    font-family: Barocco_Floral_Initial, Georgia, 'Times New Roman', serif;
+}

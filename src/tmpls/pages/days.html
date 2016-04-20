@@ -20,30 +20,32 @@
                 ng-options="player.nick for player in players">
             </select>
         </span>
-        <span>
-            Голосов
-<!--             <button type="" class="decrFall btn btn-primary" ng-disabled="details.sum == 0" ng-click="DaysCtrl.decrNumber(details, 'sum')">-</button>
-            <span>{{details.sum}}</span>
-            <button type="" class="incrFall btn btn-primary" ng-disabled="details.sum == 10" ng-click="DaysCtrl.incrNumber(details, 'sum')">+</button> -->
-            <input class="votes-number-input" type="number" ng-model="details.sum">
-        </span>
-        <button class="btn btn-primary" ng-click="DaysCtrl.removeItem(details, day.votes)">-</button>
+        <div>
+            <span>
+                Голосов
+        <!--             <button type="" class="decrFall btn btn-primary" ng-disabled="details.sum == 0" ng-click="DaysCtrl.decrNumber(details, 'sum')">-</button>
+                <span>{{details.sum}}</span>
+                <button type="" class="incrFall btn btn-primary" ng-disabled="details.sum == 10" ng-click="DaysCtrl.incrNumber(details, 'sum')">+</button> -->
+                <input class="votes-number-input" type="number" ng-model="details.sum">
+            </span>
+            <button class="btn btn-primary" ng-click="DaysCtrl.removeItem(details, day.votes)">-</button>
+        </div>
     </div>
 
     <button class="btn btn-primary" ng-click="DaysCtrl.addVote(day.votes)">Добавить выставление</button>
     <div class="results">
-        <span
-            ng-repeat="(key, value) in day.results"
-        >
-            {{::key}}
-            <select
-                class="days-input"
-                ng-model="day.results[key]"
-                ng-options="player.nick for player in players"
+            <span
+                ng-repeat="(key, value) in day.results"
+                class="{{::key}}-container"
             >
-            </select>
-        </span>
-
+                {{::key | translate}}
+                <select
+                    class="days-input"
+                    ng-model="day.results[key]"
+                    ng-options="player.nick for player in players"
+                >
+                </select>
+            </span>
     </div>
 </div>
 <button class="btn btn-primary" ng-click="DaysCtrl.addDay()">Следующий день</button>
