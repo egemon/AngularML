@@ -53,7 +53,7 @@ gulp.task('tmpls', ['lint'], function () {
 });
 
 // this task build all angular modules to ng.min,js
-gulp.task('js-ng-app', ['tmpls', 'autocomplete'], function () {
+gulp.task('js-ng-app', ['tmpls'], function () {
     return gulp.src(['src/js/angulars/modules/*.js', 'src/js/lib/angular-autocomplete/script/autocomplete.min.js'])
     .pipe(add.append(['src/js/angulars/**/*.js', '!src/js/angulars/modules/*.js']))
     .pipe(concat('ng.js'))
@@ -71,7 +71,7 @@ gulp.task('deploy-ng',['js-ng-app'], function() {
 });
 
 //this task collect all libs
-gulp.task('js-lib', ['autocomplete'],function () {
+gulp.task('js-lib',function () {
   return gulp.src(['src/js/app.js'])
     .pipe(browserify({
         debug: true,
@@ -117,7 +117,7 @@ gulp.task('watch', function() {
   // Create LiveReload server
 
   // Watch .scss files
-  gulp.watch('src/css/**/*.css', function () {
+  gulp.watch(['src/css/**/*.css', '!src/css/autocomplete.min.css'], function () {
     runSequence('css', 'deploy-css');
   });
 
