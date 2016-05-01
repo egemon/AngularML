@@ -9,5 +9,8 @@ angular.module('club').constant('club', {
     PLAYERS_URL: 'players',
     PLAYER_NUMBER: 10,
     CRITICAL_FALLS: 3,
-    MAX_FALLS: 4
+    MAX_FALLS: 4,
+    defaultGame: {},
+    defaultVote: {},
+    defaultDay: {},
 });

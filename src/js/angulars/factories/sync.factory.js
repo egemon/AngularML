@@ -7,6 +7,7 @@ function syncService ($http, club) {
         console.log('[syncService] handleResponse()', arguments);
         if (response.data.errorText) {
             alert(response.data.errorText);
+            throw response.data.errorText;
         } else {
             return response.data;
         }

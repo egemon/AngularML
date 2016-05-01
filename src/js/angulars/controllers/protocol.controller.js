@@ -27,7 +27,7 @@ function ProtocolCtrl ($scope, $http, sync, club, game) {
     // ============ PUBLIC FUNCTIONS ========
     function saveGame () {
         console.log('PROTOCOL saveGame()', vm.game);
-        sync.push(vm.game);
+        sync.push(vm.game).then(restoreDefaults);
     }
 
     function loadGame() {
@@ -36,10 +36,16 @@ function ProtocolCtrl ($scope, $http, sync, club, game) {
 
     function deleteGame () {
         console.log('PROTOCOL deleteGame()', vm.game);
-        sync.delete(vm.game.metadata);
+        sync.delete(vm.game.metadata).then(restoreDefaults);
     }
 
     // ============ PRIVATE FUNCTIONS ========
+
+    function restoreDefaults() {
+        var newGame = angular.copy(club.defaultGame);
+        newGame.metadata = vm.game.metadata;
+        handleLoadedGame(vm.game, club.defaultGame);
+    }
 
     function handleLoadedGame (oldGame, newGame) {
         console.log('[protocol.controller] handleLoadedGame() ', oldGame, newGame);
@@ -53,23 +59,26 @@ function ProtocolCtrl ($scope, $http, sync, club, game) {
             if (key === 'date') {
                 continue;
             }
-            oldMetadata[key] = newMetadata[key];
-        };
-    };
+            oldMetadata[key] = newMetadata[key] || club.defaultMetadata[key];
+        }
+    }
 
     function loadPlayerLines (oldPlayers, newPlayers) {
         newPlayers.forEach(function(newPlayer, i) {
             var oldPlayer = oldPlayers[i];
+            console.log('[protocol.controller.js] loadPlayerLines() oldPlayer = ', oldPlayer);
+            console.log('[protocol.controller.js] loadPlayerLines() newPlayer = ', newPlayer);
             for(var key in oldPlayer) {
-                oldPlayer[key] = newPlayer[key];
-            };
+                console.log('[protocol.controller.js] loadPlayerLines() key = ', key);
+                oldPlayer[key] = newPlayer[key] || club.defaultPlayer[key];
+            }
         });
-    };
+    }
 
     function loadDays (oldDays, newDays) {
         oldDays.length = 0;
-        newDays.forEach(function(newDay, i) {
-            oldDays.push(newDay)
+        newDays.forEach(function(newDay) {
+            oldDays.push(newDay);
         });
-    };
+    }
 }

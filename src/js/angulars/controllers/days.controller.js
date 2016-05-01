@@ -1,29 +1,14 @@
 angular.module('ProtocolApp')
-.controller('DaysCtrl', ['$scope', DaysCtrl]);
+.controller('DaysCtrl', ['$scope', 'club', DaysCtrl]);
 
-function DaysCtrl ($scope) {
+function DaysCtrl ($scope, club) {
     console.log('[days.controller] init');
-    var defaultVote = {
-        who: '',
-        whom: '',
-        sum: 0
-    };
 
-    var defaultDay = {
-        votes:[angular.copy(defaultVote)],
-        results: {
-            hanged: '',
-            killed: '',
-            checkedS: '',
-            checkedD: '',
-        }
-    };
 
     this.state = 'stopped';
 
-    $scope.days = [angular.copy(defaultDay)];
+    $scope.days = [angular.copy(club.defaultDay)];
     var currentDay = 0;
-
 
     this.decrNumber = decrNumber;
     this.incrNumber = incrNumber;
@@ -49,11 +34,11 @@ function DaysCtrl ($scope) {
 
     function addVote(votes) {
         console.log('[days.controller] addVote()', arguments);
-        votes.push(angular.copy(defaultVote));
+        votes.push(angular.copy(club.defaultVote));
     }
 
     function addDay() {
-        $scope.days.push(angular.copy(defaultDay));
+        $scope.days.push(angular.copy(club.defaultDay));
         currentDay++;
     }
 
