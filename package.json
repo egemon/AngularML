@@ -21,6 +21,7 @@
     "gulp-notify": "*",
     "gulp-rename": "*",
     "gulp-uglify": "*",
+    "jshint": "^2.9.2",
     "run-sequence": "*"
   },
   "scripts": {
