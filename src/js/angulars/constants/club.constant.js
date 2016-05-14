@@ -1,7 +1,7 @@
 angular.module('club').constant('club', {
     ROLES: ['Мирный', "Мафия", "Дон", "Шериф"],
     WIN: ['Мирные', "Мафия"],
-    TABLES: ['BakerStreet', 'FleetStreet', 'DowningStreet', 'AbbeyRoad'],
+    TABLES: ['BakerStreet', 'FleetStreet', 'DowningStreet', 'AbbeyRoad', 'Aldwych'],
     BASE_SERVER_URL: 'http://bs-mafiaclub.rhcloud.com/',
     SYNC_URL: 'sync',
     LOAD_URL: 'load',

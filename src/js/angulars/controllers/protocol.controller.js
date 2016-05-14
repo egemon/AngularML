@@ -27,7 +27,8 @@ function ProtocolCtrl ($scope, $http, sync, club, game) {
     // ============ PUBLIC FUNCTIONS ========
     function saveGame () {
         console.log('PROTOCOL saveGame()', vm.game);
-        sync.push(vm.game).then(restoreDefaults);
+        sync.push(vm.game)
+            .then(handlePrompt.bind(this, 'push'));
     }
 
     function loadGame() {
@@ -36,15 +37,28 @@ function ProtocolCtrl ($scope, $http, sync, club, game) {
 
     function deleteGame () {
         console.log('PROTOCOL deleteGame()', vm.game);
-        sync.delete(vm.game.metadata).then(restoreDefaults);
+        sync.delete(vm.game)
+            .then(handlePrompt.bind(this, 'delete'));
     }
 
     // ============ PRIVATE FUNCTIONS ========
 
     function restoreDefaults() {
+        console.log('[PROTOCOL restoreDefaults()]', arguments);
         var newGame = angular.copy(club.defaultGame);
         newGame.metadata = vm.game.metadata;
         handleLoadedGame(vm.game, club.defaultGame);
+    }
+
+    function handlePrompt(cmd, data) {
+        if (data.confirmText) {
+            if (window.confirm(data.confirmText)) {
+                var promise = sync[cmd](vm.game, true);
+                if (cmd === 'push') {
+                    promise.then(restoreDefaults);
+                }
+            }
+        }
     }
 
     function handleLoadedGame (oldGame, newGame) {

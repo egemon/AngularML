@@ -3,14 +3,12 @@ angular.module('sync')
 
 function syncService ($http, club) {
 
-    function handleResponse(response) {
-        console.log('[syncService] handleResponse()', arguments);
+    function alertErrorText(response) {
+        console.log('[syncService] alertErrorText()', arguments);
         if (response.data.errorText) {
             alert(response.data.errorText);
-            throw response.data.errorText;
-        } else {
-            return response.data;
         }
+        return response.data;
     }
 
     function formatGame(game) {
@@ -32,7 +30,7 @@ function syncService ($http, club) {
             }
 
         }
-        return {games: [newGame]};
+        return newGame;
     }
 
     function formatDate (metadata) {
@@ -40,21 +38,28 @@ function syncService ($http, club) {
         return metadata;
     }
 
-    function pushToServer (game) {
-        return $http.post(club.BASE_SERVER_URL + club.SYNC_URL, formatGame(game))
-            .then(handleResponse);
+    function pushToServer (game, force) {
+        var body = {
+            force: force,
+            games: [formatGame(game)]
+        };
+        return $http.post(club.BASE_SERVER_URL + club.SYNC_URL, body)
+            .then(alertErrorText);
     }
 
     function pullFromServer(metadata) {
         metadata = angular.copy(metadata);
         return $http.post(club.BASE_SERVER_URL + club.LOAD_URL, formatDate(metadata))
-            .then(handleResponse);
+            .then(alertErrorText);
     }
 
-    function deleteFromServer(metadata) {
-        metadata = angular.copy(metadata);
-        return $http.post(club.BASE_SERVER_URL + club.DELETE_URL, formatDate(metadata))
-            .then(handleResponse);
+    function deleteFromServer(game, force) {
+        var metadata = formatDate(angular.copy(game.metadata));
+        return $http.post(club.BASE_SERVER_URL + club.DELETE_URL, {
+                metadata: metadata,
+                force: force
+            })
+            .then(alertErrorText);
     }
 
     function getNicks() {
